@@ -70,6 +70,54 @@ def dead_reckon(frames, t):
         xs[k], ys[k] = x, y
     return xs, ys
 
+IDX_VF = 8
+
+def predict_filter(frames, t):
+    n = len(frames)
+    xs, ys = np.zeros(n), np.zeros(n)
+    unc = np.zeros(n)                     # total uncertainty, to plot
+
+    # state (4 numbers): x, y, theta, v
+    x, y = 0.0, 0.0
+    theta = frames[0, IDX_YAW]
+    v = frames[0, IDX_VF]
+
+    # starting cloud P (4x4). We seeded from ground truth, so fairly sure.
+    # TODO: small starting variances for [x, y, theta, v], e.g. 0.5m, 0.5m, 0.1rad, 0.5 m/s
+    P = np.diag([0.5, 0.5, 0.1, 0.5])**2   # (squared, because variance)
+
+    xs[0], ys[0] = x, y
+    unc[0] = np.trace(P)
+
+    for k in range(1, n):
+        dt = t[k] - t[k-1]
+        af = frames[k-1, IDX_AF]
+        wu = frames[k-1, IDX_WU]
+
+        # 1) move the state (your predict equations)
+        theta = theta + wu*dt
+        v     = v + af*dt
+        x     = x + v*np.cos(theta)*dt
+        y     = y + v*np.sin(theta)*dt
+
+        # 2) build F (4x4) with the current theta, v, dt   -- from your derivation
+        F = np.array([
+            [1.0, 0.0, -v*np.sin(theta)*dt, np.cos(theta)*dt],   # new x row
+            [0.0, 1.0,  v*np.cos(theta)*dt, np.sin(theta)*dt],   # new y row
+            [0.0, 0.0, 1.0,        0.0        ],
+            [0.0, 0.0, 0.0,        1.0        ],
+        ])
+
+        # 3) process noise Q (4x4): fresh IMU error this step
+        #    theta gets gyro noise, v gets accel noise, x/y almost none
+        Q = np.diag([1e-6, 1e-6, (0.01*dt)**2, (0.05*dt)**2])
+
+        # 4) grow the cloud:  P = F P Fᵀ + Q     (TODO: write this one line)
+        P = F @ P @ np.transpose(F) + Q
+
+        xs[k], ys[k] = x, y
+        unc[k] = np.trace(P)          # trace = sum of the diagonal = overall size
+    return xs, ys, unc
 
 if __name__ == "__main__":
     frames, t = load_oxts(DRIVE_DIR)
@@ -91,4 +139,17 @@ if __name__ == "__main__":
     a2.plot(t, err); a2.set_xlabel("t [s]"); a2.set_ylabel("position error [m]")
     a2.set_title("drift over time")
 
-    plt.tight_layout(); plt.savefig("dead_reckon.png", dpi=150); plt.show()
+    plt.tight_layout(); plt.savefig("dead_reckon.png", dpi=150); 
+
+    px, py, unc = predict_filter(frames, t)
+
+    plt.figure(figsize=(7, 5))
+    plt.plot(t, unc)
+    plt.xlabel("t [s]")
+    plt.ylabel("total uncertainty (trace of P)")
+    plt.title("uncertainty cloud growing (predict only)")
+    plt.tight_layout()
+    plt.savefig("uncertainty.png", dpi=150)
+    plt.show()
+
+    plt.show()
