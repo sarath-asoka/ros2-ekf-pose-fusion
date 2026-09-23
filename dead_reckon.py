@@ -119,6 +119,58 @@ def predict_filter(frames, t):
         unc[k] = np.trace(P)          # trace = sum of the diagonal = overall size
     return xs, ys, unc
 
+def ekf(frames, t, gt_x, gt_y, fix_every=10, fix_noise=1.5, seed=0):
+    rng = np.random.default_rng(seed)
+    n = len(frames)
+    xs, ys, unc = np.zeros(n), np.zeros(n), np.zeros(n)
+
+    state = np.array([0.0, 0.0, frames[0, IDX_YAW], frames[0, IDX_VF]])
+    P = np.diag([0.5, 0.5, 0.1, 0.5])**2
+
+    H = np.array([[1.0, 0, 0, 0],
+                  [0, 1.0, 0, 0]])
+    R = np.diag([fix_noise**2, fix_noise**2])
+
+    xs[0], ys[0] = state[0], state[1]; unc[0] = np.trace(P)
+
+    for k in range(1, n):
+        dt = t[k] - t[k-1]
+        af = frames[k-1, IDX_AF]; wu = frames[k-1, IDX_WU]
+
+        # ---- PREDICT (same as before) ----
+        x, y, theta, v = state
+        theta = theta + wu*dt
+        v     = v + af*dt
+        x     = x + v*np.cos(theta)*dt
+        y     = y + v*np.sin(theta)*dt
+        state = np.array([x, y, theta, v])
+
+        F = np.array([
+            [1.0, 0.0, -v*np.sin(theta)*dt, np.cos(theta)*dt],
+            [0.0, 1.0,  v*np.cos(theta)*dt, np.sin(theta)*dt],
+            [0.0, 0.0, 1.0, 0.0],
+            [0.0, 0.0, 0.0, 1.0],
+        ])
+        Q = np.diag([1e-6, 1e-6, (0.01*dt)**2, (0.05*dt)**2])
+        P = F @ P @ F.T + Q
+
+        # ---- CORRECT (only on fix steps) ----
+        if k % fix_every == 0:
+            z = np.array([gt_x[k], gt_y[k]]) + rng.normal(0, fix_noise, size=2)
+            # TODO 1: 
+            surprise = z - H @ state
+            # TODO 2: 
+            S = H @ P @ H.T + R
+            # TODO 3: 
+            K = P @ H.T @ np.linalg.inv(S)
+            # TODO 4: 
+            state = state + K @ surprise
+            # TODO 5: 
+            P = (np.eye(4) - K @ H) @ P
+
+        xs[k], ys[k] = state[0], state[1]; unc[k] = np.trace(P)
+    return xs, ys, unc
+
 if __name__ == "__main__":
     frames, t = load_oxts(DRIVE_DIR)
 
@@ -129,27 +181,48 @@ if __name__ == "__main__":
     gt_x, gt_y = latlon_to_xy(frames[:, IDX_LAT], frames[:, IDX_LON])
     dr_x, dr_y = dead_reckon(frames, t)
 
-    fig, (a1, a2) = plt.subplots(1, 2, figsize=(12, 5))
-    a1.plot(gt_x, gt_y, "k-", label="ground truth")
-    a1.plot(dr_x, dr_y, "r-", label="IMU dead reckoning")
-    a1.axis("equal"); a1.legend(); a1.set_xlabel("east [m]"); a1.set_ylabel("north [m]")
-    a1.set_title("trajectory")
+    # fig, (a1, a2) = plt.subplots(1, 2, figsize=(12, 5))
+    # a1.plot(gt_x, gt_y, "k-", label="ground truth")
+    # a1.plot(dr_x, dr_y, "r-", label="IMU dead reckoning")
+    # a1.axis("equal"); a1.legend(); a1.set_xlabel("east [m]"); a1.set_ylabel("north [m]")
+    # a1.set_title("trajectory")
 
-    err = np.hypot(dr_x - gt_x, dr_y - gt_y)
-    a2.plot(t, err); a2.set_xlabel("t [s]"); a2.set_ylabel("position error [m]")
-    a2.set_title("drift over time")
+    # err = np.hypot(dr_x - gt_x, dr_y - gt_y)
+    # a2.plot(t, err); a2.set_xlabel("t [s]"); a2.set_ylabel("position error [m]")
+    # a2.set_title("drift over time")
 
-    plt.tight_layout(); plt.savefig("dead_reckon.png", dpi=150); 
+    # plt.tight_layout(); plt.savefig("dead_reckon.png", dpi=150); 
 
     px, py, unc = predict_filter(frames, t)
 
-    plt.figure(figsize=(7, 5))
-    plt.plot(t, unc)
-    plt.xlabel("t [s]")
-    plt.ylabel("total uncertainty (trace of P)")
-    plt.title("uncertainty cloud growing (predict only)")
-    plt.tight_layout()
-    plt.savefig("uncertainty.png", dpi=150)
-    plt.show()
+    # plt.figure(figsize=(7, 5))
+    # plt.plot(t, unc)
+    # plt.xlabel("t [s]")
+    # plt.ylabel("total uncertainty (trace of P)")
+    # plt.title("uncertainty cloud growing (predict only)")
+    # plt.tight_layout()
+    # plt.savefig("uncertainty.png", dpi=150)
+
+    # --- run the EKF ---
+    ex, ey, eunc = ekf(frames, t, gt_x, gt_y)
+
+    # measure error vs truth, as one number each (RMSE)
+    dr_err  = np.hypot(dr_x - gt_x, dr_y - gt_y)
+    ekf_err = np.hypot(ex - gt_x, ey - gt_y)
+    print("dead reckoning RMSE:", np.sqrt(np.mean(dr_err**2)))
+    print("EKF RMSE           :", np.sqrt(np.mean(ekf_err**2)))
+
+    # --- plots ---
+    fig, (b1, b2) = plt.subplots(1, 2, figsize=(12, 5))
+    b1.plot(gt_x, gt_y, "k-", label="ground truth")
+    b1.plot(dr_x, dr_y, "r-", label="IMU dead reckoning", alpha=0.5)
+    b1.plot(ex, ey, "g-", label="EKF (IMU + position fix)", linewidth=2)
+    b1.axis("equal"); b1.legend(); b1.set_xlabel("east [m]"); b1.set_ylabel("north [m]")
+    b1.set_title("trajectory")
+
+    b2.plot(t, eunc)
+    b2.set_xlabel("t [s]"); b2.set_ylabel("uncertainty (trace of P)")
+    b2.set_title("EKF uncertainty (saw-tooth)")
+    plt.tight_layout(); plt.savefig("ekf.png", dpi=150); plt.show()
 
     plt.show()
