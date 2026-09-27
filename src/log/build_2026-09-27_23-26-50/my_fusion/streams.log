@@ -1,0 +1,31 @@
+[0.565s] Invoking command in '/home/sarath/ekf-pose-fusion/src/my_fusion': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=(sar) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/sarath/ekf-pose-fusion/src/build/my_fusion/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sarath/ekf-pose-fusion/src/install/my_fusion/lib/python3.14/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/my_fusion build --build-base /home/sarath/ekf-pose-fusion/src/build/my_fusion/build install --record /home/sarath/ekf-pose-fusion/src/build/my_fusion/install.log --install-scripts $base/lib/my_fusion --single-version-externally-managed install_data
+[0.700s] running egg_info
+[0.707s] creating ../build/my_fusion/my_fusion.egg-info
+[0.707s] writing ../build/my_fusion/my_fusion.egg-info/PKG-INFO
+[0.708s] writing dependency_links to ../build/my_fusion/my_fusion.egg-info/dependency_links.txt
+[0.708s] writing requirements to ../build/my_fusion/my_fusion.egg-info/requires.txt
+[0.708s] writing top-level names to ../build/my_fusion/my_fusion.egg-info/top_level.txt
+[0.708s] writing manifest file '../build/my_fusion/my_fusion.egg-info/SOURCES.txt'
+[0.726s] reading manifest file '../build/my_fusion/my_fusion.egg-info/SOURCES.txt'
+[0.726s] adding license file 'LICENSE'
+[0.726s] writing manifest file '../build/my_fusion/my_fusion.egg-info/SOURCES.txt'
+[0.726s] running build
+[0.726s] running build_py
+[0.726s] creating /home/sarath/ekf-pose-fusion/src/build/my_fusion/build/lib/my_fusion
+[0.726s] copying my_fusion/__init__.py -> /home/sarath/ekf-pose-fusion/src/build/my_fusion/build/lib/my_fusion
+[0.727s] copying my_fusion/py.typed -> /home/sarath/ekf-pose-fusion/src/build/my_fusion/build/lib/my_fusion
+[0.727s] running install
+[0.728s] running install_lib
+[0.737s] creating /home/sarath/ekf-pose-fusion/src/install/my_fusion/lib/python3.14/site-packages/my_fusion
+[0.737s] copying /home/sarath/ekf-pose-fusion/src/build/my_fusion/build/lib/my_fusion/__init__.py -> /home/sarath/ekf-pose-fusion/src/install/my_fusion/lib/python3.14/site-packages/my_fusion
+[0.737s] copying /home/sarath/ekf-pose-fusion/src/build/my_fusion/build/lib/my_fusion/py.typed -> /home/sarath/ekf-pose-fusion/src/install/my_fusion/lib/python3.14/site-packages/my_fusion
+[0.737s] byte-compiling /home/sarath/ekf-pose-fusion/src/install/my_fusion/lib/python3.14/site-packages/my_fusion/__init__.py to __init__.cpython-314.pyc
+[0.737s] running install_data
+[0.737s] creating /home/sarath/ekf-pose-fusion/src/install/my_fusion/share/ament_index/resource_index/packages
+[0.737s] copying resource/my_fusion -> /home/sarath/ekf-pose-fusion/src/install/my_fusion/share/ament_index/resource_index/packages
+[0.737s] copying package.xml -> /home/sarath/ekf-pose-fusion/src/install/my_fusion/share/my_fusion
+[0.737s] running install_egg_info
+[0.746s] Copying ../build/my_fusion/my_fusion.egg-info to /home/sarath/ekf-pose-fusion/src/install/my_fusion/lib/python3.14/site-packages/my_fusion-0.0.0-py3.14.egg-info
+[0.746s] running install_scripts
+[0.787s] writing list of installed files to '/home/sarath/ekf-pose-fusion/src/build/my_fusion/install.log'
+[0.819s] Invoked command in '/home/sarath/ekf-pose-fusion/src/my_fusion' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=(sar) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/sarath/ekf-pose-fusion/src/build/my_fusion/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sarath/ekf-pose-fusion/src/install/my_fusion/lib/python3.14/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/my_fusion build --build-base /home/sarath/ekf-pose-fusion/src/build/my_fusion/build install --record /home/sarath/ekf-pose-fusion/src/build/my_fusion/install.log --install-scripts $base/lib/my_fusion --single-version-externally-managed install_data
