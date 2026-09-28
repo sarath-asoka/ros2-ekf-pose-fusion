@@ -1,0 +1,22 @@
+running egg_info
+writing ../../build/my_fusion/my_fusion.egg-info/PKG-INFO
+writing dependency_links to ../../build/my_fusion/my_fusion.egg-info/dependency_links.txt
+writing requirements to ../../build/my_fusion/my_fusion.egg-info/requires.txt
+writing top-level names to ../../build/my_fusion/my_fusion.egg-info/top_level.txt
+reading manifest file '../../build/my_fusion/my_fusion.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file '../../build/my_fusion/my_fusion.egg-info/SOURCES.txt'
+running build
+running build_py
+copying my_fusion/__init__.py -> /home/sarath/ekf-pose-fusion/build/my_fusion/build/lib/my_fusion
+copying my_fusion/py.typed -> /home/sarath/ekf-pose-fusion/build/my_fusion/build/lib/my_fusion
+running install
+running install_lib
+running install_data
+copying resource/my_fusion -> /home/sarath/ekf-pose-fusion/install/my_fusion/share/ament_index/resource_index/packages
+copying package.xml -> /home/sarath/ekf-pose-fusion/install/my_fusion/share/my_fusion
+running install_egg_info
+removing '/home/sarath/ekf-pose-fusion/install/my_fusion/lib/python3.14/site-packages/my_fusion-0.0.0-py3.14.egg-info' (and everything under it)
+Copying ../../build/my_fusion/my_fusion.egg-info to /home/sarath/ekf-pose-fusion/install/my_fusion/lib/python3.14/site-packages/my_fusion-0.0.0-py3.14.egg-info
+running install_scripts
+writing list of installed files to '/home/sarath/ekf-pose-fusion/build/my_fusion/install.log'

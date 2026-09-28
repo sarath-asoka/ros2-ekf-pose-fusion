@@ -1,0 +1,17 @@
+running develop
+running egg_info
+writing lidar_inertial_ekf.egg-info/PKG-INFO
+writing dependency_links to lidar_inertial_ekf.egg-info/dependency_links.txt
+writing entry points to lidar_inertial_ekf.egg-info/entry_points.txt
+writing requirements to lidar_inertial_ekf.egg-info/requires.txt
+writing top-level names to lidar_inertial_ekf.egg-info/top_level.txt
+reading manifest file 'lidar_inertial_ekf.egg-info/SOURCES.txt'
+writing manifest file 'lidar_inertial_ekf.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/lib/python3.14/site-packages/lidar-inertial-ekf.egg-link (link to .)
+Installing sensor_replay script to /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/lib/lidar_inertial_ekf
+
+Installed /home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf
+running symlink_data
+symbolically linking /home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/resource/lidar_inertial_ekf -> /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/share/ament_index/resource_index/packages
+symbolically linking /home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/package.xml -> /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/share/lidar_inertial_ekf
