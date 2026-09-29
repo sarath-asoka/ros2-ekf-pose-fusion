@@ -1,0 +1,13 @@
+running develop
+running egg_info
+writing my_fusion.egg-info/PKG-INFO
+writing dependency_links to my_fusion.egg-info/dependency_links.txt
+writing requirements to my_fusion.egg-info/requires.txt
+writing top-level names to my_fusion.egg-info/top_level.txt
+reading manifest file 'my_fusion.egg-info/SOURCES.txt'
+writing manifest file 'my_fusion.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/sarath/ekf-pose-fusion/install/my_fusion/lib/python3.14/site-packages/my-fusion.egg-link (link to .)
+
+Installed /home/sarath/ekf-pose-fusion/build/my_fusion
+running symlink_data

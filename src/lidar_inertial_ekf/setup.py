@@ -25,7 +25,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'sensor_replay = lidar_inertial_ekf.sensor_replay_node:main'
+            'sensor_replay = lidar_inertial_ekf.sensor_replay_node:main',
+            'ekf_node = lidar_inertial_ekf.ekf_node:main'
         ],
     },
 )

@@ -1,0 +1,17 @@
+[0.684s] Invoking command in '/home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=(sar) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/lib/python3.14/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/build --no-deps symlink_data
+[0.829s] running develop
+[0.911s] running egg_info
+[0.919s] writing lidar_inertial_ekf.egg-info/PKG-INFO
+[0.920s] writing dependency_links to lidar_inertial_ekf.egg-info/dependency_links.txt
+[0.920s] writing entry points to lidar_inertial_ekf.egg-info/entry_points.txt
+[0.920s] writing requirements to lidar_inertial_ekf.egg-info/requires.txt
+[0.920s] writing top-level names to lidar_inertial_ekf.egg-info/top_level.txt
+[0.938s] reading manifest file 'lidar_inertial_ekf.egg-info/SOURCES.txt'
+[0.938s] writing manifest file 'lidar_inertial_ekf.egg-info/SOURCES.txt'
+[0.947s] running build_ext
+[0.947s] Creating /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/lib/python3.14/site-packages/lidar-inertial-ekf.egg-link (link to .)
+[0.947s] Installing sensor_replay script to /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/lib/lidar_inertial_ekf
+[0.947s] 
+[0.947s] Installed /home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf
+[0.947s] running symlink_data
+[0.976s] Invoked command in '/home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PS1=(sar) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/lib/python3.14/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/build --no-deps symlink_data
