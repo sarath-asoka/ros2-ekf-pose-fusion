@@ -12,11 +12,9 @@ lidar_inertial_ekf/__init__.py
 lidar_inertial_ekf/pose_estimate.py
 lidar_inertial_ekf/py.typed
 lidar_inertial_ekf/sensor_replay_node.py
-lidar_inertial_ekf.egg-info/PKG-INFO
-lidar_inertial_ekf.egg-info/SOURCES.txt
-lidar_inertial_ekf.egg-info/dependency_links.txt
-lidar_inertial_ekf.egg-info/entry_points.txt
-lidar_inertial_ekf.egg-info/requires.txt
-lidar_inertial_ekf.egg-info/top_level.txt
-lidar_inertial_ekf.egg-info/zip-safe
 resource/lidar_inertial_ekf
+test/test_copyright.py
+test/test_flake8.py
+test/test_mypy.py
+test/test_pep257.py
+test/test_xmllint.py
