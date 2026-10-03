@@ -1,0 +1,29 @@
+running egg_info
+writing ../../build/lidar_inertial_ekf/lidar_inertial_ekf.egg-info/PKG-INFO
+writing dependency_links to ../../build/lidar_inertial_ekf/lidar_inertial_ekf.egg-info/dependency_links.txt
+writing entry points to ../../build/lidar_inertial_ekf/lidar_inertial_ekf.egg-info/entry_points.txt
+writing requirements to ../../build/lidar_inertial_ekf/lidar_inertial_ekf.egg-info/requires.txt
+writing top-level names to ../../build/lidar_inertial_ekf/lidar_inertial_ekf.egg-info/top_level.txt
+reading manifest file '../../build/lidar_inertial_ekf/lidar_inertial_ekf.egg-info/SOURCES.txt'
+writing manifest file '../../build/lidar_inertial_ekf/lidar_inertial_ekf.egg-info/SOURCES.txt'
+running build
+running build_py
+copying lidar_inertial_ekf/sensor_replay_node.py -> /home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/build/lib/lidar_inertial_ekf
+copying lidar_inertial_ekf/pose_estimate.py -> /home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/build/lib/lidar_inertial_ekf
+copying lidar_inertial_ekf/ekf_node.py -> /home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/build/lib/lidar_inertial_ekf
+copying lidar_inertial_ekf/__init__.py -> /home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/build/lib/lidar_inertial_ekf
+copying lidar_inertial_ekf/py.typed -> /home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/build/lib/lidar_inertial_ekf
+running install
+running install_lib
+copying /home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/build/lib/lidar_inertial_ekf/pose_estimate.py -> /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/lib/python3.14/site-packages/lidar_inertial_ekf
+byte-compiling /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/lib/python3.14/site-packages/lidar_inertial_ekf/pose_estimate.py to pose_estimate.cpython-314.pyc
+running install_data
+copying resource/lidar_inertial_ekf -> /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/share/ament_index/resource_index/packages
+copying package.xml -> /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/share/lidar_inertial_ekf
+running install_egg_info
+removing '/home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/lib/python3.14/site-packages/lidar_inertial_ekf-0.0.0-py3.14.egg-info' (and everything under it)
+Copying ../../build/lidar_inertial_ekf/lidar_inertial_ekf.egg-info to /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/lib/python3.14/site-packages/lidar_inertial_ekf-0.0.0-py3.14.egg-info
+running install_scripts
+Installing ekf_node script to /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/lib/lidar_inertial_ekf
+Installing sensor_replay script to /home/sarath/ekf-pose-fusion/install/lidar_inertial_ekf/lib/lidar_inertial_ekf
+writing list of installed files to '/home/sarath/ekf-pose-fusion/build/lidar_inertial_ekf/install.log'

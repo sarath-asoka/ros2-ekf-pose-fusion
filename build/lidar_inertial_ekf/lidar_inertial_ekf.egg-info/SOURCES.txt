@@ -9,6 +9,7 @@ setup.py
 ../../build/lidar_inertial_ekf/lidar_inertial_ekf.egg-info/top_level.txt
 ../../build/lidar_inertial_ekf/lidar_inertial_ekf.egg-info/zip-safe
 lidar_inertial_ekf/__init__.py
+lidar_inertial_ekf/ekf_node.py
 lidar_inertial_ekf/pose_estimate.py
 lidar_inertial_ekf/py.typed
 lidar_inertial_ekf/sensor_replay_node.py

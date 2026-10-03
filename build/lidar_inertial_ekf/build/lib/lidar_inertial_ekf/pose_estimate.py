@@ -32,6 +32,10 @@ IDX_VF = 8              # forward speed (m/s)
 IDX_AF = 14             # forward acceleration, car frame (m/s^2)
 IDX_WU = 22             # yaw rate about up axis (rad/s)
 
+# EKF tuning
+P0_DIAG = np.array([0.5, 0.5, 0.1, 0.5])   # initial 1-sigma [x, y, theta, v]
+GYRO_STD = 0.01
+ACCEL_STD = 0.05
 
 # ===========================================================================
 # 1. DATA LOADING
@@ -333,6 +337,23 @@ def ekf_lidar(frames, t, lidar_dphi, heading_noise_deg=1.0):
 
         xs[k], ys[k] = state[0], state[1]; unc[k] = np.trace(P)
     return xs, ys, unc
+
+def ekf_predict(state, P, af, wu, dt):
+    """Shared EKF predict step: move the state, grow the cloud P."""
+    x, y, theta, v = state
+    theta = theta + wu * dt
+    v = v + af * dt
+    x = x + v * np.cos(theta) * dt
+    y = y + v * np.sin(theta) * dt
+    state = np.array([x, y, theta, v])
+    F = np.array([
+        [1.0, 0.0, -v*np.sin(theta)*dt, np.cos(theta)*dt],
+        [0.0, 1.0,  v*np.cos(theta)*dt, np.sin(theta)*dt],
+        [0.0, 0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.0, 1.0],
+    ])
+    Q = np.diag([1e-6, 1e-6, (GYRO_STD*dt)**2, (ACCEL_STD*dt)**2])
+    return state, F @ P @ F.T + Q
 
 # ===========================================================================
 # 6. MAIN
